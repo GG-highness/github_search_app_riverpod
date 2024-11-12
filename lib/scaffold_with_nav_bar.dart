@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'common/valueObject/route_path.dart';
 
 class ScaffoldWithNavBar extends StatelessWidget {
   final Widget child;
@@ -35,7 +36,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
     final RouteMatchList matchList = lastMatch is ImperativeRouteMatch ? lastMatch.matches : routerDelegate.currentConfiguration;
     final String location = matchList.uri.toString();
 
-    if (location == '/setting') {
+    if (location == settingRoute.path) {
       return 1;
     }
     return 0;
@@ -44,10 +45,10 @@ class ScaffoldWithNavBar extends StatelessWidget {
   void _onNavBarTapped(BuildContext context, int index) {
     switch (index) {
       case 0:
-        context.go('/');
+        context.go(homeRoute.path);
         break;
       case 1:
-        context.go('/setting');
+        context.go(settingRoute.path);
         break;
     }
   }

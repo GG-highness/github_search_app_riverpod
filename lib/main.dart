@@ -4,6 +4,7 @@ import 'package:github_search_app_riverpod/scaffold_with_nav_bar.dart';
 import 'package:go_router/go_router.dart';
 import 'package:github_search_app_riverpod/pages/home.dart';
 import 'package:github_search_app_riverpod/pages/setting.dart';
+import 'common/valueObject/route_path.dart';
 
 void main() {
   runApp(
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
   static final _router = GoRouter(
-    initialLocation: '/',
+    initialLocation: homeRoute.path,
     routes: [
       ShellRoute(
         navigatorKey: _rootNavigatorKey,
@@ -28,11 +29,11 @@ class MyApp extends StatelessWidget {
         },
         routes: [
           GoRoute(
-            path: '/',
+            path: homeRoute.path,
             builder: (context, state) => const HomePage(),
           ),
           GoRoute(
-            path: '/setting',
+            path: settingRoute.path,
             builder: (context, state) => const SettingPage(),
           ),
         ],
