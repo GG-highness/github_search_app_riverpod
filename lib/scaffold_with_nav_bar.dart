@@ -13,14 +13,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _calculateSelectedIndex(context),
         onTap: (int index) {
-          switch (index) {
-            case 0:
-              context.go('/');
-              break;
-            case 1:
-              context.go('/setting');
-              break;
-          }
+          _onNavBarTapped(context, index);
         },
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -46,5 +39,16 @@ class ScaffoldWithNavBar extends StatelessWidget {
       return 1;
     }
     return 0;
+  }
+
+  void _onNavBarTapped(BuildContext context, int index) {
+    switch (index) {
+      case 0:
+        context.go('/');
+        break;
+      case 1:
+        context.go('/setting');
+        break;
+    }
   }
 }
