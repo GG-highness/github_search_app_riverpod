@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:github_search_app_riverpod/common/provider/count_provider.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -14,9 +15,20 @@ class HomePage extends ConsumerWidget {
         title: const Text('Riverpod Counter'),
       ),
       body: Center(
-        child: Text(
-          'Counter: $counter',
-          style: const TextStyle(fontSize: 24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Counter: $counter',
+              style: const TextStyle(fontSize: 24),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                context.go('/setting');
+              },
+              child: const Text('Go to Setting Page'),
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
