@@ -1,30 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:github_search_app_riverpod/scaffold_with_nav_bar.dart';
+import 'package:go_router/go_router.dart';
 import 'package:github_search_app_riverpod/pages/home.dart';
 import 'package:github_search_app_riverpod/pages/setting.dart';
-import 'package:go_router/go_router.dart';
 
 void main() {
   runApp(
-    ProviderScope(
+    const ProviderScope(
       child: MyApp(),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
-  final GoRouter _router = GoRouter(
+  static final _rootNavigatorKey = GlobalKey<NavigatorState>();
+
+  static final _router = GoRouter(
     initialLocation: '/',
     routes: [
-      GoRoute(
-        path: '/',
-        builder: (context, state) => const HomePage(),
-      ),
-      GoRoute(
-        path: '/setting',
-        builder: (context, state) => const SettingPage(),
+      ShellRoute(
+        navigatorKey: _rootNavigatorKey,
+        builder: (context, state, child) {
+          return ScaffoldWithNavBar(child: child);
+        },
+        routes: [
+          GoRoute(
+            path: '/',
+            builder: (context, state) => const HomePage(),
+          ),
+          GoRoute(
+            path: '/setting',
+            builder: (context, state) => const SettingPage(),
+          ),
+        ],
       ),
     ],
   );
