@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../common/enum/page.dart';
+import '../common/enum/app_page.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({super.key});
