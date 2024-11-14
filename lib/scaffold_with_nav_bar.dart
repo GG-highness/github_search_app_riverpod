@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:github_search_app_riverpod/common/enum/app_page.dart';
 import 'package:go_router/go_router.dart';
-import 'common/valueObject/route_path.dart';
 
 class ScaffoldWithNavBar extends StatelessWidget {
   final Widget child;
@@ -14,7 +14,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _calculateSelectedIndex(context),
         onTap: (int index) {
-          _onNavBarTapped(context, index);
+          _onNavBarTapped(context, AppPage.values[index]);
         },
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -36,19 +36,19 @@ class ScaffoldWithNavBar extends StatelessWidget {
     final RouteMatchList matchList = lastMatch is ImperativeRouteMatch ? lastMatch.matches : routerDelegate.currentConfiguration;
     final String location = matchList.uri.toString();
 
-    if (location == settingRoute.path) {
-      return 1;
+    if (location == AppPage.setting.path) {
+      return AppPage.setting.number;
     }
-    return 0;
+    return AppPage.home.number;
   }
 
-  void _onNavBarTapped(BuildContext context, int index) {
-    switch (index) {
-      case 0:
-        context.go(homeRoute.path);
+  void _onNavBarTapped(BuildContext context, AppPage page) {
+    switch (page) {
+      case AppPage.home:
+        context.go(AppPage.home.path);
         break;
-      case 1:
-        context.go(settingRoute.path);
+      case AppPage.setting:
+        context.go(AppPage.setting.path);
         break;
     }
   }
