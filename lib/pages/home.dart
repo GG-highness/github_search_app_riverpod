@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:github_search_app_riverpod/common/provider/count_provider.dart';
 import 'package:go_router/go_router.dart';
+import '../common/enum/app_page.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -24,7 +25,7 @@ class HomePage extends ConsumerWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                context.go('/setting');
+                context.go(AppPage.setting.path);
               },
               child: const Text('Go to Setting Page'),
             ),
