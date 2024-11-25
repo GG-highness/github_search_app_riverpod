@@ -1,40 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:github_search_app_riverpod/common/provider/count_provider.dart';
-import 'package:go_router/go_router.dart';
-import '../common/enum/app_page.dart';
+import 'package:github_search_app_riverpod/common/provider/search_provider.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final counter = ref.watch(counterProvider);
+    final searchString = ref.watch(searchProvider);
+    final TextEditingController textEditingController = TextEditingController(text: searchString);
+
+    void search() {
+      // 検索時にプロバイダーの値を使用
+      print('Searching for: $searchString');
+    }
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Riverpod Counter'),
+        title: const Text('GitHub'),
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Counter: $counter',
-              style: const TextStyle(fontSize: 24),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                context.go(AppPage.setting.path);
+          children: <Widget>[
+            TextField(
+              controller: textEditingController,
+              onChanged: (value) => ref.read(searchProvider.notifier).state = value,
+              onSubmitted: (value) {
+                ref.read(searchProvider.notifier).state = value;
+                search();
               },
-              child: const Text('Go to Setting Page'),
+              decoration: const InputDecoration(
+                labelText: 'Search for a repository', 
+                border: OutlineInputBorder(),
+              ),
+              keyboardType: TextInputType.text,
+              textInputAction: TextInputAction.search,
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => ref.read(counterProvider.notifier).state++,
-        child: const Icon(Icons.add),
       ),
     );
   }
