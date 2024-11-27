@@ -46,7 +46,7 @@ class HomePage extends ConsumerWidget {
             ),
             Expanded(
               child: repositories.isEmpty
-                ? Center(child: Text('No repositories found'))
+                ? const Center(child: Text('No repositories found'))
                 : ListView.builder(
                     itemCount: repositories.length,
                     itemBuilder: (context, index) {
@@ -57,7 +57,7 @@ class HomePage extends ConsumerWidget {
                       );
                     },
                   ),
-          ),
+            ),
           ],
         ),
       ),
