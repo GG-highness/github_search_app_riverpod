@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:github_search_app_riverpod/common/provider/search_provider.dart';
+import 'package:github_search_app_riverpod/common/provider/search_string_provider.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final searchString = ref.watch(searchProvider);
+    final searchString = ref.watch(searchStringProvider);
     final TextEditingController textEditingController = TextEditingController(text: searchString);
 
     void search() {
@@ -26,9 +26,9 @@ class HomePage extends ConsumerWidget {
           children: <Widget>[
             TextField(
               controller: textEditingController,
-              onChanged: (value) => ref.read(searchProvider.notifier).state = value,
+              onChanged: (value) => ref.read(searchStringProvider.notifier).state = value,
               onSubmitted: (value) {
-                ref.read(searchProvider.notifier).state = value;
+                ref.read(searchStringProvider.notifier).state = value;
                 search();
               },
               decoration: const InputDecoration(
