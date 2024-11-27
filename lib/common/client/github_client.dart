@@ -1,6 +1,6 @@
 import 'dart:convert';
+import 'package:github_search_app_riverpod/common/models/repository.dart';
 import 'package:http/http.dart' as http;
-import '../models/github_repository.dart';
 
 class GitHubApiClient {
   final String baseUrl = 'https://api.github.com';
