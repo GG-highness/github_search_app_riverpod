@@ -38,7 +38,7 @@ class HomePage extends ConsumerWidget {
                 search(value);
               },
               decoration: const InputDecoration(
-                labelText: 'Search for a repository', 
+                labelText: 'Search for a repository',
                 border: OutlineInputBorder(),
               ),
               keyboardType: TextInputType.text,
