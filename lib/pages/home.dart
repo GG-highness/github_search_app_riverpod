@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:github_search_app_riverpod/common/provider/repository_list_notifier.dart';
 import 'package:github_search_app_riverpod/common/provider/search_string_provider.dart';
 
 class HomePage extends ConsumerWidget {
@@ -8,6 +9,7 @@ class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final searchString = ref.watch(searchStringProvider);
+    final repositories = ref.watch(repositoryListProvider(searchString));
     final TextEditingController textEditingController = TextEditingController(text: searchString);
 
     void search() {
@@ -38,6 +40,20 @@ class HomePage extends ConsumerWidget {
               keyboardType: TextInputType.text,
               textInputAction: TextInputAction.search,
             ),
+            Expanded(
+              child: repositories.isEmpty
+                ? Center(child: Text('No repositories found'))
+                : ListView.builder(
+                    itemCount: repositories.length,
+                    itemBuilder: (context, index) {
+                      final repository = repositories[index];
+                      return ListTile(
+                        title: Text(repository.name),
+                        subtitle: Text(repository.ownerName ?? 'No description'),
+                      );
+                    },
+                  ),
+          ),
           ],
         ),
       ),
