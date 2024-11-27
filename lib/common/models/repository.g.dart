@@ -8,8 +8,8 @@ part of 'repository.dart';
 
 Repository _$RepositoryFromJson(Map<String, dynamic> json) => Repository(
       name: json['name'] as String,
-      ownerName: json['ownerName'] as String?,
-      htmlUrl: json['htmlUrl'] as String,
+      ownerName: json['owner']['login'] as String,
+      htmlUrl: json['html_url'] as String,
     );
 
 Map<String, dynamic> _$RepositoryToJson(Repository instance) =>

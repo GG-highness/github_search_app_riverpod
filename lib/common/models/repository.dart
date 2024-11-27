@@ -4,16 +4,19 @@ part 'repository.g.dart';
 
 @JsonSerializable()
 class Repository {
-  final String name; //レポジトリの名前
-  final String? ownerName; //作者の名前
-  final String htmlUrl; //レポジトリのリンク
+  final String name; // レポジトリの名前
+  @JsonKey(name: 'owner') // ownerオブジェクトのlogin値をownerNameにマッピング
+  final String ownerName; // 作者の名前
+  final String htmlUrl; // レポジトリのリンク
 
   Repository({
     required this.name,
-    this.ownerName,
+    required this.ownerName,
     required this.htmlUrl,
   });
 
-  factory Repository.fromJson(Map<String, dynamic> json) => _$RepositoryFromJson(json);
+  factory Repository.fromJson(Map<String, dynamic> json) =>
+      _$RepositoryFromJson(json);
+
   Map<String, dynamic> toJson() => _$RepositoryToJson(this);
 }
