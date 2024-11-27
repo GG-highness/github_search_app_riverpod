@@ -4,13 +4,13 @@ part 'repository.g.dart';
 
 @JsonSerializable()
 class Repository {
-  final String name;
-  final String? description;
-  final String htmlUrl;
+  final String name; //レポジトリの名前
+  final String? ownerName; //作者の名前
+  final String htmlUrl; //レポジトリのリンク
 
   Repository({
     required this.name,
-    this.description,
+    this.ownerName,
     required this.htmlUrl,
   });
 
