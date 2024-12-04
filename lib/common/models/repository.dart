@@ -1,22 +1,24 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'repository.g.dart';
+part 'repository.freezed.dart';
+
+@freezed
+class Repository with _$Repository {
+  const factory Repository({
+    required String name, // レポジトリの名前
+    required Owner owner, // 作者の情報
+    required String htmlUrl, // レポジトリのリンク
+  }) = _Repository;
+
+  factory Repository.fromJson(Map<String, dynamic> json) => _$RepositoryFromJson(json);
+}
 
 @JsonSerializable()
-class Repository {
-  final String name; // レポジトリの名前
-  @JsonKey(name: 'owner') // ownerオブジェクトのlogin値をownerNameにマッピング
-  final String ownerName; // 作者の名前
-  final String htmlUrl; // レポジトリのリンク
+@freezed
+class Owner with _$Owner {
+  const factory Owner({
+    required String login, // 作者の名前
+  }) = _Owner;
 
-  Repository({
-    required this.name,
-    required this.ownerName,
-    required this.htmlUrl,
-  });
-
-  factory Repository.fromJson(Map<String, dynamic> json) =>
-      _$RepositoryFromJson(json);
-
-  Map<String, dynamic> toJson() => _$RepositoryToJson(this);
+  factory Owner.fromJson(Map<String, dynamic> json) => _$OwnerFromJson(json);
 }
