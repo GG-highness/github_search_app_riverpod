@@ -53,7 +53,7 @@ class HomePage extends ConsumerWidget {
                       final repository = repositories[index];
                       return ListTile(
                         title: Text(repository.name),
-                        subtitle: Text(repository.ownerName),
+                        subtitle: Text(repository.owner.login),
                       );
                     },
                   ),
