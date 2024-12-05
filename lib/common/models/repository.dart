@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'repository.freezed.dart';
+part 'repository.g.dart';
 
 @freezed
 class Repository with _$Repository {
@@ -13,7 +14,6 @@ class Repository with _$Repository {
   factory Repository.fromJson(Map<String, dynamic> json) => _$RepositoryFromJson(json);
 }
 
-@JsonSerializable()
 @freezed
 class Owner with _$Owner {
   const factory Owner({
