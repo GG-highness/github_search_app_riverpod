@@ -22,6 +22,7 @@ Repository _$RepositoryFromJson(Map<String, dynamic> json) {
 mixin _$Repository {
   String get name => throw _privateConstructorUsedError; // レポジトリの名前
   Owner get owner => throw _privateConstructorUsedError; // 作者の情報
+  @JsonKey(name: 'html_url')
   String get htmlUrl => throw _privateConstructorUsedError;
 
   /// Serializes this Repository to a JSON map.
@@ -40,7 +41,8 @@ abstract class $RepositoryCopyWith<$Res> {
           Repository value, $Res Function(Repository) then) =
       _$RepositoryCopyWithImpl<$Res, Repository>;
   @useResult
-  $Res call({String name, Owner owner, String htmlUrl});
+  $Res call(
+      {String name, Owner owner, @JsonKey(name: 'html_url') String htmlUrl});
 
   $OwnerCopyWith<$Res> get owner;
 }
@@ -99,7 +101,8 @@ abstract class _$$RepositoryImplCopyWith<$Res>
       __$$RepositoryImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, Owner owner, String htmlUrl});
+  $Res call(
+      {String name, Owner owner, @JsonKey(name: 'html_url') String htmlUrl});
 
   @override
   $OwnerCopyWith<$Res> get owner;
@@ -143,7 +146,9 @@ class __$$RepositoryImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$RepositoryImpl implements _Repository {
   const _$RepositoryImpl(
-      {required this.name, required this.owner, required this.htmlUrl});
+      {required this.name,
+      required this.owner,
+      @JsonKey(name: 'html_url') required this.htmlUrl});
 
   factory _$RepositoryImpl.fromJson(Map<String, dynamic> json) =>
       _$$RepositoryImplFromJson(json);
@@ -155,6 +160,7 @@ class _$RepositoryImpl implements _Repository {
   final Owner owner;
 // 作者の情報
   @override
+  @JsonKey(name: 'html_url')
   final String htmlUrl;
 
   @override
@@ -194,9 +200,10 @@ class _$RepositoryImpl implements _Repository {
 
 abstract class _Repository implements Repository {
   const factory _Repository(
-      {required final String name,
-      required final Owner owner,
-      required final String htmlUrl}) = _$RepositoryImpl;
+          {required final String name,
+          required final Owner owner,
+          @JsonKey(name: 'html_url') required final String htmlUrl}) =
+      _$RepositoryImpl;
 
   factory _Repository.fromJson(Map<String, dynamic> json) =
       _$RepositoryImpl.fromJson;
@@ -206,6 +213,7 @@ abstract class _Repository implements Repository {
   @override
   Owner get owner; // 作者の情報
   @override
+  @JsonKey(name: 'html_url')
   String get htmlUrl;
 
   /// Create a copy of Repository
