@@ -1,6 +1,9 @@
 # 参考サイト
 # https://zenn.dev/uzu_tech/articles/fc059011bb9b84
 
+analyzer:
+  errors:
+    invalid_annotation_target: ignore
 include: package:flutter_lints/flutter.yaml
 
 linter:
